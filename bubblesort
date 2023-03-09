@@ -1,0 +1,59 @@
+using System;
+
+namespace ConsoleApp11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the limit to the Array ");
+            int limit = Convert.ToInt32(Console.ReadLine());
+            int[] number = new int[limit];
+            Console.WriteLine("Enter the Number to sort ");
+            for (int i= 0;i< number.Length; i++)
+            {
+                number[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Before Sorting");
+            Console.WriteLine(ToDisplay(number));
+            Console.WriteLine("After Sorting");
+            BubbleSort(number);
+
+
+        }
+        public static int[] BubbleSort(int[] elements)
+        {
+          
+            int temp;
+            for(int i = 0; i < elements.Length; i++)
+            {
+                for(int j = 0; j< elements.Length - 1; j++)
+                {
+                    if(elements[j]> elements[j + 1])
+                    {
+                        temp = elements[j];
+                        elements[j] = elements[j + 1];
+                        elements[j + 1] = temp;
+
+
+                    }
+                }
+            }
+            return ToDisplay(elements);
+        }
+        public static int[] ToDisplay(int[] arr)
+        {
+            foreach (int num in arr)
+            {
+               
+                Console.WriteLine(num);
+                
+            }
+            
+           
+            return null;
+           
+
+        }
+    }
+}
