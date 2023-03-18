@@ -1,0 +1,626 @@
+<?php
+   $con=mysqli_connect("localhost","root","","attanance_system");
+?>
+
+home.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style type="text/css">
+	.menu{
+		color: white;
+		background-color: black;
+		padding: 10px;
+		font-size: 1.3em;
+		text-decoration: none;
+	}
+	.menu:hover{
+		color: black;
+		background-color: gray;
+		padding: 10px;
+		box-shadow: 5px 4px 5px 1px;
+	}
+
+    </style>
+
+</head>
+<body>
+<ul style="list-style:none;display:inline-block">
+	<li style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="menu">Add Member</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;<a href="getattendance.php" class="menu">Get Attendance</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;<a href="Attendance Details.php" class="menu">Attendance Details</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+	<li style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;<a href="Salary Details.php" class="menu">Salary Details</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+
+</ul> 
+</body>
+</html>
+
+index.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attanance</title>
+  
+</head>
+<body>
+<table width="800" border="1" align="center">
+      <tr>
+        <td bordercolor="#330033" bgcolor="#CCCCFF"><h1 align="center"><strong><span class="style1"> Employees Attendance</span></strong></h1></td>
+      </tr>
+      <tr>
+        <td bgcolor="#999966"><div align="center">
+       						<?php 
+							include "home.php";
+							?> 
+        				</div>       </td>
+      </tr>
+      <tr>
+        <td><div align="center">
+        <form action="insertmember.php" method="post">
+          <table width="400" border="2" align="center" bordercolor="#9966FF" bgcolor="#C7B6B1">
+            <tr>
+              <td colspan="2" bgcolor="#9999CC"><div align="center"><strong><span class="style2">Enter the Employees Details</span></strong></div></td>
+            </tr>
+            <tr>
+              <td width="160"><span class="style6">Name</span></td>
+              <td width="222"><span class="style6"><input type="text" name="name" /></span></td>
+            </tr>
+            <tr>
+              <td><span class="style6">DOB</span></td>
+              <td><span class="style6"><input type="date" name="date_of_birth" /></span></td>
+            </tr>
+            <tr>
+              <td><span class="style6">Salary</span></td>
+              <td><span class="style6"><input type="text" name="salary" /></span></td>
+            </tr>
+            <tr>
+              <td colspan="2"><div align="center">
+                <input type="submit" value="Add Member" name="btnsubmit"/>
+                &nbsp;&nbsp;
+                <input type="reset" value="Reset" name="btnreset"/>
+              </div></td>
+            </tr>
+          </table>
+          </form>
+        </div></td>
+      </tr>
+    </table> 
+</body>
+</html>
+
+insert.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attanance</title>
+  
+</head>
+<body>
+<table width="800" border="1" align="center">
+      <tr>
+        <td bordercolor="#330033" bgcolor="#CCCCFF"><h1 align="center"><strong><span class="style1"> Employees Attendance</span></strong></h1></td>
+      </tr>
+      <tr>
+        <td bgcolor="#999966"><div align="center">
+       						<?php 
+							include "home.php";
+							?> 
+        				</div>       </td>
+      </tr>
+      <tr>
+        <td><div align="center">
+        <form action="insertmember.php" method="post">
+          <table width="400" border="2" align="center" bordercolor="#9966FF" bgcolor="#C7B6B1">
+            <tr>
+              <td colspan="2" bgcolor="#9999CC"><div align="center"><strong><span class="style2">Enter the Employees Details</span></strong></div></td>
+            </tr>
+            <tr>
+              <td width="160"><span class="style6">Name</span></td>
+              <td width="222"><span class="style6"><input type="text" name="name" /></span></td>
+            </tr>
+            <tr>
+              <td><span class="style6">DOB</span></td>
+              <td><span class="style6"><input type="date" name="date_of_birth" /></span></td>
+            </tr>
+            <tr>
+              <td><span class="style6">Salary</span></td>
+              <td><span class="style6"><input type="text" name="salary" /></span></td>
+            </tr>
+            <tr>
+              <td colspan="2"><div align="center">
+                <input type="submit" value="Add Member" name="btnsubmit"/>
+                &nbsp;&nbsp;
+                <input type="reset" value="Reset" name="btnreset"/>
+              </div></td>
+            </tr>
+          </table>
+          </form>
+        </div></td>
+      </tr>
+    </table> 
+</body>
+</html>
+
+getattendance.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Attendance</title>
+
+    <style type="text/css">
+<!--
+.style1 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 60px;
+	color: #FFFFFF;
+	font-style: italic;
+}
+.style2 {
+	font-size: 24px;
+	color: #0000FF;
+}
+.style7 {color: #FFCCFF}
+
+</style>
+<!-- <script type="text/javascript">
+	function getatt(value)
+	{
+		if(value == true)
+		{
+			document.getElementById("txtAbsent").value = parseInt(document.getElementById("txtAbsent").value) - 1;
+			document.getElementById("txtPresent").value = parseInt(document.getElementById("txtPresent").value) + 1;
+		}
+		else
+		{
+			document.getElementById("txtAbsent").value = parseInt(document.getElementById("txtAbsent").value) + 1;
+			document.getElementById("txtPresent").value = parseInt(document.getElementById("txtPresent").value) - 1;
+		}
+	}
+</script> -->
+
+</head>
+
+
+<body>
+    
+<table width="800" border="1" align="center">
+      <tr>
+        <td bordercolor="#330033" bgcolor="#CCCCFF"><h1 align="center"><strong><span class="style1">employees Attendance</span></strong></h1></td>
+      </tr>
+      <tr>
+        <td bgcolor="#999966"><div align="center">
+       						<?php 
+									include "home.php";
+							?> 
+        				</div>       </td>
+      </tr>
+      <tr>
+        <td>
+        <form action="getattendance1.php" method="post">
+        <table width="180px" align="left">
+            	<tr>
+                	<td> Select date : <br />
+                   <?php 
+				 		    $dt = getdate();
+							$day = $dt["mday"];
+							$month = date("m");
+							$year = $dt["year"];
+							
+							echo "<select name='cdate'>";
+							for($a=1;$a<=31;$a++)
+							{
+								if($day == $a)
+									echo "<option value='$a' selected='selected'>$a</option>";
+								else
+									echo "<option value='$a' >$a</option>";
+							}
+							echo "</select><select name='cmonth'>";
+							for($a=1;$a<=12;$a++)
+							{
+								if($month == $a)
+									echo "<option value='$a' selected='selected'>$a</option>";
+								else
+									echo "<option value='$a' >$a</option>";
+							}
+							echo "</select><select name='cyear'>";
+							for($a=2010;$a<=$year;$a++)
+							{
+								if($year == $a)
+									echo "<option value='$a' selected='selected'>$a</option>";
+								else
+									echo "<option value='$a' >$a</option>";
+							}
+							echo "</select>";
+						?>                    
+                    </td>
+                </tr>
+             </table>	
+        
+          <table width="400" border="2" align="left" bordercolor="#9966FF" bgcolor="#C7B6B1" style="margin-left:20px;">
+            <tr>
+              <td colspan="3" bgcolor="#9999CC"><div align="center"><strong><span class="style2">Get Attendance</span></strong></div></td>
+            </tr>
+            <tr bgcolor="#999966">
+              <td width="152"><span class="style7">Name</span></td>
+              <td width="110"><span class="style7">Attend</span></td>
+            </tr>
+            <?php
+				include "db.php";
+				extract($_POST);
+				$query = "select *from `employees` order by `id`";
+				$s = 0;
+				$result = mysqli_query($con,$query)or die("select error");
+				while($rec = mysqli_fetch_array($result))
+				{
+					$s = $s + 1;
+					echo ' <tr>
+							  
+							  <td width="152">'.$rec["name"].'</td>
+							  <td width="110"><input type=checkbox name='.$rec["id"].' onclick="getatt(this.checked);"/></td>
+							</tr>';
+				}
+			?>			
+            <tr>
+              <td colspan="3"><div align="center">
+                <input type="submit" value="Get Attendance" name="btnsubmit"/>
+                &nbsp;&nbsp;</div></td>
+            </tr>
+          </table>
+          </form>
+         
+         	<!-- <table width="100px" align="right" style="margin-left:35px">
+            	<tr>
+                	<td> Total Absent : <input type="text" id="txtAbsent" value="<?php print $s; ?>" size="10" disabled="disabled"/></td>
+                </tr>
+                <tr>
+                	<td> Total Present : <input type="text" id="txtPresent" value="0" size="10"  disabled="disabled"/></td>
+                </tr>
+                <tr>
+                	<td> Total Strength : <input type="text" id="txtStrength" value="<?php print $s; ?>" size="10" disabled="disabled"/></td>
+                </tr>
+             </table> -->
+         
+         </td>
+      </tr>
+    </table>
+
+</body>
+</html>
+
+getattendance1.php
+
+<?php
+	if(isset($_POST["btnsubmit"]))
+	{
+		include "db.php";
+		
+		$date = $_POST["cyear"]."-".$_POST["cmonth"]."-".$_POST["cdate"];
+               		
+		$query = "select *from `employees` ";
+		$result = mysqli_query($con,$query)or die("select error");
+		while($rec = mysqli_fetch_array($result))
+		{
+            $name=$rec["name"]; 
+			$mno = $rec["id"];
+			if(isset($_POST[$mno]))
+			{
+				$query1 = "INSERT INTO  `attanance`(`id` ,`name` ,`date` ,  `attendance`) VALUES('$mno','$name','$date','1')";
+			}
+			else
+			{
+				$query1 = "INSERT INTO  `attanance`(`id` ,`name` ,`date` ,  `attendance`) VALUES('$mno','$name','$date','0')";
+			}
+			mysqli_query($con,$query1)or die("insert error".$mno);
+			print "<script>";
+			print "alert('Attendance get successfully....');";
+			print "self.location='getattendance.php';";
+			print "</script>";
+		}
+		
+		
+			
+		
+	}
+	else
+	{
+		header("Location:index.php");
+	}
+?>
+
+attendencedetails.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Attandance Details</title>
+
+    <style type="text/css">
+.style1 {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 60px;
+	color: #FFFFFF;
+	font-style: italic;
+}
+.style2 {
+	font-size: 24px;
+	color: #0000FF;
+}
+.style6 {font-size: 16px}
+</style>
+
+</head>
+<body>
+    
+<table width="800" border="1" align="center">
+      <tr>
+        <td bordercolor="#330033" bgcolor="#CCCCFF"><h1 align="center"><strong><span class="style1">employees Attendance</span></strong></h1></td>
+      </tr>
+      <tr>
+        <td bgcolor="#999966"><div align="center">
+       						<?php 
+									include "home.php";
+							?> 
+        				</div>       </td>
+      </tr>
+      <tr>
+        <td><div align="center">
+        <!-- <form action="" method="post">
+          <table width="606" border="2" align="center" bordercolor="#9966FF" bgcolor="#C7B6B1">
+          	<tr><td colspan="3" align="center"><h3>Search Enrolment No Wise Records Here</h3></td></tr>
+            <tr>
+              <td width="308" bgcolor="#9999CC"><div align="center"><strong><span class="style2">Enter the enrolment no</span></strong></div></td>
+              <td width="144" bgcolor="#9999CC"><span class="style6">
+                <input type="text" name="eno" />
+              </span></td>
+              <td width="130" bgcolor="#9999CC"><input type="submit" value="View Information" name="btnsubmit"/></td>
+            </tr>
+          </table>
+          </form> -->
+        </div></td>
+      </tr>
+		<?php
+		if(isset($_POST["btnsubmit"]))
+		{
+			include "db.php";
+			extract($_POST);
+			// $query = "select * from `employees` where enrolment_no = ".$eno." limit 1";
+
+			$result = mysqli_query($con,$query)or die("select error error");
+			while($rec = mysqli_fetch_array($result))
+			{
+				echo '<tr><td colspan="2"><table width="400" border="2" align="center" bordercolor="#9966FF" bgcolor="#C7B6B1">
+				<tr>
+				  <td width="160" bgcolor="#9999CC"><span class="style2">Name</span></td>';
+				  $query1 = "select  from `attanance` where `id` = ".$rec["id"]." order by date";
+					$result1 = mysqli_query($con,$query1)or die("select error error");
+					while($rec1 = mysqli_fetch_array($result1))
+					{
+				  		echo '<td bgcolor="#9999CC" class=style2>'.$rec1["date"].'</td>';
+					}
+				echo '</tr>
+				<tr>
+				  <td width="222"><span class="style6">'.$rec["name"].'</span></td>';
+				  $query1 = "select *from `attandance` where `id` = ".$rec["id"]." order by date";
+					$result1 = mysqli_query($con,$query1)or die("select error error");
+					while($rec1 = mysqli_fetch_array($result1))
+					{
+				  		echo '<td>';
+						if($rec1["attendance"]==0)
+							echo "absent";
+							
+						else
+							echo "Present";
+						echo '</td>';
+					}
+				
+				echo '
+				</tr>
+								
+			  </table></td></tr>';
+			}
+		}
+		else
+		{
+			include "db.php";
+			extract($_POST);
+			$query = "select * from `employees` ";
+
+			$result = mysqli_query($con,$query)or die("select error error");
+			while($rec = mysqli_fetch_array($result))
+			{
+				echo '<tr><td colspan="2"><table width="90%" border="2" align="center" bordercolor="#9966FF" bgcolor="#C7B6B1">
+				<tr>
+				  <td width="160" bgcolor="#9999CC"><span class="style2">Name</span></td>';
+				  $query1 = "select * from `attanance` where `id` = ".$rec["id"]." order by date";
+					$result1 = mysqli_query($con,$query1)or die("select error error");
+					while($rec1 = mysqli_fetch_array($result1))
+					{
+				  		echo '<td bgcolor="#9999CC" class=style2>'.$rec1["date"].'</td>';
+					}
+				echo '</tr>
+				<tr>
+				  <td width="222"><span class="style6">'.$rec["name"].'</span></td>';
+				  $query1 = "select *from `attanance` where `id` = ".$rec["id"]." order by date";
+					$result1 = mysqli_query($con,$query1)or die("select error error");
+					while($rec1 = mysqli_fetch_array($result1))
+					{
+				  		echo '<td>';
+						if($rec1["attendance"]==0)
+							echo "Absent";
+						else
+							echo "Present";
+						echo '</td>';
+					}
+				
+				echo '
+				</tr>
+								
+			  </table></td></tr>';
+			}
+		}
+		?>    
+	</table>
+
+</body>
+</html>
+
+salary.php
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>salary details</title>
+</head>
+<body>
+<table width="800" border="1" align="center">
+      <tr>
+        <td bordercolor="#330033" bgcolor="#CCCCFF"><h1 align="center"><strong><span class="style1">Employees Attendance</span></strong></h1></td>
+      </tr>
+      <tr>
+        <td bgcolor="#999966"><div align="center">
+       						<?php 
+									include "home.php";
+							?> 
+        				</div>       </td>
+      </tr>
+      
+</table>
+<table width="800" border="1" align="center" >
+<tr bgcolor="#999966">
+              <th width="152"><span class="style7">Name</span></th>
+              <th width="110"><span class="style7">Total Working Days</span></th>
+              <th width="110"><span class="style7">working days</span></th>
+              <th width="110"><span class="style7">working Salary</span></th>
+              
+ </tr>
+              <?php
+              // include "db.php";
+              // extract($_POST);
+              // $query = "select *from `employees` order by `id`";
+              
+              // $result = mysqli_query($con,$query)or die("select error");
+              // while($rec = mysqli_fetch_array($result))
+              // // {
+               
+              // //   echo ' <tr bgcolor="gray">
+                      
+              // //         <td width="152">'.$rec["name"].'</td>
+              // //       </tr>';
+              // // }
+
+              
+    
+          
+       echo'<tr>';
+			include "db.php";
+			extract($_POST);
+			$query = "select * from `employees` ";
+      
+			$result = mysqli_query($con,$query)or die("select error error");
+			while($rec = mysqli_fetch_array($result))
+			{
+				
+				  
+				  // $query1 = "select * from `attanance` where `id` = ".$rec["id"]."";
+					// $result1 = mysqli_query($con,$query1)or die("select error error");
+					// $rec1 = mysqli_fetch_array($result1);
+					
+				echo '<tr bgcolor="gray">
+        <td width="222"><span class="style6">'.$rec["name"].'</span></td>';
+        
+
+
+				  $query1 = "select count(attendance) from `attanance` where `id` = ".$rec["id"]."";
+					$result1 = mysqli_query($con,$query1)or die("select error error");
+					$rec2 = mysqli_fetch_array($result1);
+          
+         
+					{
+            
+            $re=implode('',$rec2);
+				  		echo '<td>';
+              echo $rec2[0];
+              
+          //  echo  $re;
+          
+          //  print_r( $rec['(attendance)']);
+						echo '</td>';
+					}
+         
+          $query1 = "select count(attendance) from `attanance` where `id` = ".$rec["id"]." AND attendance=1";
+					$result1 = mysqli_query($con,$query1)or die("select error error");
+					$rec2 = mysqli_fetch_array($result1);
+
+          {
+            
+            $re=implode('',$rec2);
+				  		echo '<td>';
+              echo $rec2[0];
+						echo '</td>';
+					}
+
+          {
+            
+            $re=implode('',$rec2);
+				  		echo '<td>';
+              echo $rec2[0]*1000;
+						echo '</td>';
+					}
+
+          // include "db.php";
+			    // extract($_POST);
+          //  $name=$rec["id"];
+         
+          //     $working_days="SELECT count(`attendance`) FROM `attanance` WHERE id=$name";
+              
+          //     $result = mysqli_query($con,$working_days);
+          //     print_r ($result) ;
+          //     while(mysqli_fetch_array($result)){
+          //       echo ' <tr>
+					// 		        <td width="110">'.$rec["id"].'</td>
+          //         </tr>';
+          //     }
+
+
+        //   {
+        //     echo '<td>';
+        //   $rec1["attendance"]==1;
+        //   echo count($rec1)*1000;
+        //   echo '</td>';
+        // }
+      
+				
+				echo '
+				</tr>
+								
+			</tr>';
+			}
+    
+            ?>
+           
+</table>
+</body>
+</html>
