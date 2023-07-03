@@ -3,7 +3,6 @@
 ?>
 
 home.php
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +24,6 @@ home.php
 		padding: 10px;
 		box-shadow: 5px 4px 5px 1px;
 	}
-
     </style>
 
 </head>
